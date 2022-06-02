@@ -69,7 +69,7 @@ export const deleteDictionaryFB = (dict_id) => {
     const docRef = doc(db, "dictionary", dict_id);
     await deleteDoc(docRef);
 
-     const _dict_list = getState().dict.list;
+     const _dict_list = getState().dictionary.list;
      const dict_index = _dict_list.findIndex((d) => {
        return d.id === dict_id;
      });

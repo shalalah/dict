@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { loadDictionaryFB, deleteDictionaryFB, updateDictionaryFB } from "./redux/modules/dictionary";
-import { useHistory, useParams } from "react-router-dom";
+// import { useHistory, useParams } from "react-router-dom";
 
 
 const MyDictionary = (props) => {
   
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
   const dic_list = useSelector((state) => state.dictionary.list);
 
-  const params = useParams();
-  const dict_index = params.index;
+  // const params = useParams();
+  // const dict_index = params.index;
   
   React.useEffect(() => {
     dispatch(loadDictionaryFB()) ;
@@ -57,15 +57,15 @@ const MyDictionary = (props) => {
                   
                   <Button 
                     onClick={() => {
-                      dispatch(updateDictionaryFB(dic_list[dict_index].id));
-                      history.goBack();
+                      dispatch(updateDictionaryFB(list.id));
+                      
                     }}
                   >
                     수정
                   </Button>
                   <Button
                     onClick={() => {
-                      dispatch(deleteDictionaryFB(dic_list[dict_index].id));
+                      dispatch(deleteDictionaryFB(list.id));
                     }}
                   >
                     삭제
