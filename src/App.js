@@ -16,7 +16,8 @@ function App() {
         <Wrapper>
           <Switch>
             <Route exact path="/" component={MyDictionary}></Route>
-            <Route path="/word/:index" component={AddWord}></Route>
+            <Route path="/word/" component={AddWord}></Route>
+            {/* <Route path="/update:index" component={AddWord}></Route> */}
             <Route path="/NotFound" component={NotFound}></Route>
           </Switch>
         </Wrapper>

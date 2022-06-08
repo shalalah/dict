@@ -2,26 +2,30 @@ import React from "react";
 import styled from 'styled-components';
 import { createDictionaryFB } from './redux/modules/dictionary';
 import { useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory} from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 const AddWord = () => {
   const wordInput = React.useRef(null);
   const descInput = React.useRef(null);
-  const exampleInput = React.useRef(null);
-  
+  const exampleInput = React.useRef(null);  
   
   const history = useHistory();
   const dispatch = useDispatch();
+  // const params = useParams();
+  // const dict_index = params.index;
 
-
+// Firebase에 저장함
   const addWord = () => {
     dispatch(createDictionaryFB( {
+      
       word: wordInput.current.value,
       desc: descInput.current.value,
       example: exampleInput.current.value,
       completed : false,
       }
     ));
+    console.log(addWord.id);
     history.goBack();
   };
 

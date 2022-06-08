@@ -34,7 +34,7 @@ export function updateDictionary(dict_index) {
 export const loadDictionaryFB = () => {
   return async function (dispatch) {
     const dict_data = await getDocs(collection(db, "dictionary"));
-    // 배열로 바궈줌
+    // 배열로 바꿔줌...
         let dict_list = [];
         dict_data.forEach((doc) => {
             dict_list.push({ id: doc.id, ...doc.data() });
@@ -82,10 +82,9 @@ export const deleteDictionaryFB = (dict_id) => {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "dictionary/LOAD": {
-      if (action.dict_list.length > 0) {
+      
         return { list: action.dict_list };
-      }
-      return state;
+    
     }
     case 'dictionary/CREATE': {
       const new_list = [...state.list, action.dict];

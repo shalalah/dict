@@ -4,40 +4,27 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ButtonGroup } from "@material-ui/core";
 import { loadDictionaryFB, deleteDictionaryFB, updateDictionaryFB } from "./redux/modules/dictionary";
-// import { useHistory, useParams } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 
 const MyDictionary = (props) => {
   
   // const history = useHistory();
   const dispatch = useDispatch();
+  // 
   const dic_list = useSelector((state) => state.dictionary.list);
 
-  // const params = useParams();
-  // const dict_index = params.index;
-  
+   
   React.useEffect(() => {
     dispatch(loadDictionaryFB()) ;
   }, []);
 
 
-  // const updateWord = (selected_id) => {
-  //   const selected_word = dic_list.find(({ id }) => {
-  //     return id === selected_id;
-  //   });
-  //   history.push({
-  //     pathname: "/word/update",
-  //     state: {
-  //       selected_word: selected_word,
-  //     },
-  //   });
-  // };
-
   return (
     <>    
       {dic_list.map((list, index) => {
       return (
-            <ContentBox key={index}>
+            <ContentBox key={list.id}>
               <Content>
                 <ContentTitle>단어</ContentTitle>
                 <ContentWord>{list.word}</ContentWord>
@@ -56,7 +43,7 @@ const MyDictionary = (props) => {
                 >
                   
                   <Button 
-                    onClick={() => {
+                    onClick={(e) => {
                       dispatch(updateDictionaryFB(list.id));
                       
                     }}
