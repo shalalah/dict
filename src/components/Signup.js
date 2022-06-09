@@ -15,7 +15,7 @@ const Signup = () => {
   const name_ref = React.useRef();
   const pw_ref = React.useRef();
 
-    // 회원가입
+    // 회원가입 유저정보 FB에 업데이트
     const signupFB = async() => {
       // 값 확인 -> 밸리데이션
         // if (id_ref.current.value === ""){

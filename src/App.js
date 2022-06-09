@@ -15,9 +15,8 @@ import { auth } from "./shared/firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate} from "react-router-dom";
 
-
 function App() {
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   // 로그인 체크
   const [is_login, setIsLogin] = React.useState(false);
 
@@ -34,13 +33,13 @@ function App() {
     onAuthStateChanged(auth, 
       loginCheck);
   }, []);
-
-  const [til_list, setTilList] = React.useState([]);
+  
+  // const [til_list, setTilList] = React.useState([]);
   const Inbar = () => {
     return (
         <div className="Bar">
             <button onClick={() => {signOut(auth)}}>로그아웃</button> 
-            <button onClick={() => {navigate("/write/:name");}}>작성페이지로 이동</button>
+            {/* <button onClick={() => {navigate("/write/:index");}}>작성페이지로 이동</button> */}
         </div>
                 );
   };
@@ -57,10 +56,11 @@ function App() {
     <div className="App" style={{ display: "flex", gap: 10 }}>
       {is_login ?  (<Inbar />) :(<Outbar />)}                
       <Routes>
-        <Route exact path="/" element={<Main til_list={til_list}/>} />   
-        <Route exact path="/write/:name" element={<Write setTilList={setTilList} til_list={til_list}/>}></Route>
+        <Route exact path="/" element={<Main />} />
+        <Route exact path="/write/:index" element={<Write />}></Route>
+        {/* <Route exact path="/write/:index" element={<Write setTilList={setTilList} til_list={til_list}/>}></Route> */}
         <Route exact path="/signup" element={<Signup />} />
-        <Route exact path="/" element={<Main til_list={til_list}/>} />
+        {/* <Route exact path="/" element={<Main til_list={til_list}/>} /> */}
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/card" element={<RecipeReviewCard />}></Route>
   

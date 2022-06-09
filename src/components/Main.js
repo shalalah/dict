@@ -4,44 +4,71 @@
 import '../App.css';
 import React from "react";
 // import styled from 'styled-components';
-// import { useNavigate} from "react-router-dom";
-import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { loadBoardFB, updateBoardFB } from "../redux/modules/board";
+// import {db} from "../shared/firebase";
+// fb에서 가져오기 
+// import { addDoc, collection, getDocs } from 'firebase/firestore';
+//docs 가져오기
+// import { collection, query, where, getDocs } from "firebase/firestore";
 // import { signOut } from "firebase/auth";
 // import { auth } from "../shared/firebase";
 
-const Main = () => {
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
-    const til_list = useSelector(store => store.til.til_list);
-
+const Main = (props) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    // const [board_list, setBoardList] = React.useState([]);
+    const board_list = useSelector((state) => state.board.list);
+    // console.log(board_list);
+     //잘 가져왔는지 확인
+    React.useEffect(() => {
+        dispatch(loadBoardFB());
+    // //     // const query = await getDocs(collection(db, 'board'));
+	// // 	// console.log(query);
+    // //     // query.forEach((doc) => {
+    // //     // console.log(doc.id, doc.data());
+    // //     // });
+    }, []);
+    // const board_list_id =  useParams().id;
+    //     const UpdateFB = () => {
+    //         dispatch(updateBoardFB({
+    //             comment,
+    //             image_url : file_link_ref.current.url,
+    //         }, board_list_id))
+    //         navigate("/");
+    //     }
     return (
         <div class Name="ContentBox">
             <h2>메인 화면</h2>
             <div className="title-area">
-                {/* <button onClick={() => {
-                    navigate("/signup");
-                }}>회원가입</button>
-                <button onClick={() => {
-                    navigate("/login");
-                }}>로그인</button> */}
-                {/* <button onClick={() => {signOut(auth)}}>로그아웃</button>                              */}
-                {/* <AddBtn onClick={() => {
-                    navigate("/write/:name");
-                }}>작성페이지로 이동</AddBtn> */}
+            <button className='AddBtn' onClick={() => {
+                    // dispatch(createBoardFB);
+                    navigate("/write/:index");
+                }}>작성페이지로 이동
+                </button>
             </div>
-            <div className="til-list">
-            {til_list.map((til, idx) => {
+            <div className="board_list">
+            {board_list.map((list, idx) => {
                 return (
-                <div
+                
+                <div className= "Content"
                 style={{
                 border: "1px solid #888",
                 marginBottom: "2rem",
                 padding: ".5rem",}}>
-                    <h3>{til.title}</h3>
-                    <p>{til.content}</p>
-                    <p>{til.time}</p>
-                </div> 
+                    <h3>{list.title}</h3>
+                    <p>{list.content}</p>
+                    {/* <p>{til.img}</p> */}
+                    <img src = {list.image_url} alt=""/>
+                    <div className="buttons">
+                        <button onClick={ () => {
+                            dispatch(updateBoardFB());
+                        }}>수정</button>
+                        <button>삭제</button>
+                    </div>
+                </div>
+                
                 );
             })}
             </div>
