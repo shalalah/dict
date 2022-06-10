@@ -4,7 +4,7 @@
 import '../App.css';
 import React from "react";
 // import styled from 'styled-components';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loadBoardFB, updateBoardFB } from "../redux/modules/board";
 // import {db} from "../shared/firebase";
@@ -40,18 +40,13 @@ const Main = (props) => {
     //     }
     return (
         <div class Name="ContentBox">
+            
             <h2>메인 화면</h2>
-            <div className="title-area">
-            <button className='AddBtn' onClick={() => {
-                    // dispatch(createBoardFB);
-                    navigate("/write/:index");
-                }}>작성페이지로 이동
-                </button>
-            </div>
+            
             <div className="board_list">
             {board_list.map((list, idx) => {
-                return (
-                
+                return (     
+                <>      
                 <div className= "Content"
                 style={{
                 border: "1px solid #888",
@@ -63,12 +58,19 @@ const Main = (props) => {
                     <img src = {list.image_url} alt=""/>
                     <div className="buttons">
                         <button onClick={ () => {
-                            dispatch(updateBoardFB());
+                            navigate('/edit' + idx + '/' + `${list.id}`);
                         }}>수정</button>
                         <button>삭제</button>
                     </div>
                 </div>
-                
+                {/* <div className="title-area">
+                    <button onClick={() => {
+                    // dispatch(createBoardFB);
+                    navigate("/write/" + idx + "/" + `${list.id}`);
+                    }}>작성페이지로 이동
+                    </button>
+                </div>  */}
+                </>     
                 );
             })}
             </div>

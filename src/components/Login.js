@@ -2,7 +2,7 @@
 // 아이디, 비밀번호, 로그인하기 버튼
 import '../App.css';
 import React from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import styled from 'styled-components';
 // 비밀번호 인증
 import { signInWithEmailAndPassword } from "firebase/auth"; 

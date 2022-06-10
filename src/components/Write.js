@@ -62,17 +62,17 @@ const Write = () => {
             <Title>게시글 작성</Title>
             <div className = "ContentBox">
             <div className = "Content">
-            <ContentTitle>제목</ContentTitle>
-            <ContentInput ref={title_ref} />
+            <div className = "ContentTitle">제목</div>
+            <div className ="ContentInput" ref={title_ref} />
             </div>
             <div className = "Content">
-            <ContentTitle>게시글 내용</ContentTitle>
-            <ContentInput ref={content_ref} />
+            <div className = "ContentTitle">게시글 내용</div>
+            <div className ="ContentInput" ref={content_ref} />
             </div>            
             </div>
             <div className='Content'>
-            <ContentTitle>이미지 업로드</ContentTitle>
-            <ContentInput 
+            <div className = "ContentTitle">이미지 업로드</div>
+            <div className ="ContentInput" 
                 type = "file" 
                 onChange={uploadFB}
                 ref={img_ref} />
@@ -116,15 +116,15 @@ const Title = styled.div`
  
 // `;
 
-const ContentTitle = styled.div`
-  font-size: 30px;
-  font-family: 'Nanum Pen Script', cursive;
- `;
+// const ContentTitle = styled.div`
+//   font-size: 30px;
+//   font-family: 'Nanum Pen Script', cursive;
+//  `;
 
-const ContentInput = styled.input`
-  height: 50px;
-  margin-top: 10px;
-`;
+// const ContentInput = styled.input`
+//   height: 50px;
+//   margin-top: 10px;
+// `;
 // const Box = styled.div`
 //   display:flex;
 //   justify-content: space-between;

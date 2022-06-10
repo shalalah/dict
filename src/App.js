@@ -8,6 +8,7 @@ import Main from "./components/Main";
 import Write from "./components/Write";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import Edit from "./components/Edit";
 import RecipeReviewCard from "./Card";
 //로그인 데이터
 import { onAuthStateChanged } from "firebase/auth";
@@ -38,8 +39,8 @@ function App() {
   const Inbar = () => {
     return (
         <div className="Bar">
-            <button onClick={() => {signOut(auth)}}>로그아웃</button> 
-            {/* <button onClick={() => {navigate("/write/:index");}}>작성페이지로 이동</button> */}
+            <button onClick={() => {signOut(auth)}}>로그아웃</button>
+            <button onClick={() => {navigate("/write/:index/:id");}}>작성페이지로 이동</button>
         </div>
                 );
   };
@@ -57,13 +58,13 @@ function App() {
       {is_login ?  (<Inbar />) :(<Outbar />)}                
       <Routes>
         <Route exact path="/" element={<Main />} />
-        <Route exact path="/write/:index" element={<Write />}></Route>
+        <Route exact path="/write/:index/:id" element={<Write />}></Route>
         {/* <Route exact path="/write/:index" element={<Write setTilList={setTilList} til_list={til_list}/>}></Route> */}
         <Route exact path="/signup" element={<Signup />} />
         {/* <Route exact path="/" element={<Main til_list={til_list}/>} /> */}
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/card" element={<RecipeReviewCard />}></Route>
-  
+        <Route exact path="/edit/:index/:id" element={<Edit />} />
       </Routes>
     </div>
     // <div className="App"

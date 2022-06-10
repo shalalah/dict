@@ -9,7 +9,7 @@ const UPDATE = 'board/UPDATE';
 const DELETE = 'board/DELETE';
 
 const initialState = { list: [
-    {title: "test", content: "test", img: "test", image_url: "test"}
+    { }
 ], };
 
 // Action Creators
@@ -56,11 +56,11 @@ export function createBoardFB(board) {
         const docRef = await addDoc(collection(db, "board"), board);
         // console.log(docRef);
         const _dict = await getDoc(docRef);
-        const dict_data = { id: _dict.id, ..._dict.data()};
+        const dict_data = { id: _dict.id, ..._dict.data() };
         dispatch(createBoard(dict_data));
     }
 }
-//
+// 수정하기 위해 데이터와 id를 가지고 옴
 export const updateBoardFB = (board_list, board_list_id) => {
         return async function (dispatch, getState) {
             const docRef = doc (db, "board", board_list_id);
